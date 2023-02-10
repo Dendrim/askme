@@ -2,10 +2,13 @@
   <h1 class="title-lg mb">Список вопросов</h1>
 
   <% @questions.each do |question| %>
-    <p class="mb-sm"><%= link_to "Вопрос #{question.id}", question_path(question) %></p>
+    <p class="mb-sm<%= question.hidden? ? ' hidden-question' : ''%>">
+      <%= link_to "Вопрос #{question.id}", question_path(question) %>
+    </p>
   <% end %>
 
+
   <p class="mt">
-    <%= link_to "Создать новый вопрос", new_question_path, class: 'button button-main' %>
+    <%= link_to "Создать новый вопрос", new_question_path, class: "button button-main" %>
   </p>
 </div>
