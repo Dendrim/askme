@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: 'questions#index'
 
-  put '/questions/:id/hide', to: 'questions#hide'
-  resources :questions
+  resources :questions do
+    member do
+      put 'hide'
+    end
+  end
 end

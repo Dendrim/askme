@@ -10,8 +10,9 @@
     <%= button_to fa_icon('trash-o'), question_path(@question), method: :delete,
       title: 'Удалить вопрос', form: {data: {turbo_confirm: 'Точно удалить вопрос?'}} %>
 
-    <% if @question.shown? -%>
-      <%= button_to fa_icon('eye-slash'), "#{question_path(@question)}/hide", method: :put, title: 'Скрыть вопрос' %>
+    <% if !@question.hidden? -%>
+      <%= button_to fa_icon('eye-slash'), "#{question_path(@question)}/hide", method: :put, title: 'Скрыть вопрос',
+        form: {data: {turbo_confirm: 'Точно скрыть вопрос?'}} %>
     <% end -%>
   </div>
 
