@@ -7,6 +7,10 @@ a, button {
   color: #DC2F02;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
 .title-lg {
   font-size: 175%;
 }

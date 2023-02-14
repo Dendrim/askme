@@ -8,4 +8,7 @@ Rails.application.routes.draw do
       put 'hide'
     end
   end
+
+  resources :users, only: %i[new create]
+  resource :session, only: %i[new create destroy]
 end
