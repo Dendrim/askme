@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
   end
 
   def hide
-    @question.hide
+    @question.update(hidden: true)
 
     redirect_to questions_path
   end

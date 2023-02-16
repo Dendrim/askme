@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create edit update destroy]
+  resources :users do
+    member do
+      patch 'edit', to: 'users#update'
+    end
+  end
+
   resource :session, only: %i[new create destroy]
 end

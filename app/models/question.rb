@@ -1,5 +1,3 @@
 class Question < ApplicationRecord
-  def hide
-    update(hidden: true)
-  end
+  validates :body, presence: true, length: { maximum: 280 }
 end

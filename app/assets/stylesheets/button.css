@@ -15,3 +15,7 @@
 .button-yellow {
   background: #ce9608;
 }
+
+.button-empty {
+  border: 1px solid #fff;
+}

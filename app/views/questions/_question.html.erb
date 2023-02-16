@@ -1,5 +1,5 @@
 <div class="mb-sm">
-  <%= simple_format(question.body) %>
+  <%= tag.p sanitize(question.body, tags: %w[br mark ins del sup sub small i b]), class:'question-body' %>
 </div>
 
 <div class="text-sm question-footer">
@@ -13,7 +13,7 @@
     <%= button_to fa_icon('trash-o'), question_path(question), method: :delete,
       title: 'Удалить вопрос', form: {data: {turbo_confirm: 'Точно удалить вопрос?'}} %>
 
-    <% if !question.hidden? -%>
+    <% unless question.hidden? -%>
       <%= button_to fa_icon('eye-slash'), hide_question_path(question), method: :put, title: 'Скрыть вопрос',
         form: {data: {turbo_confirm: 'Точно скрыть вопрос?'}} %>
     <% end -%>
