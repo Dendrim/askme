@@ -8,9 +8,15 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question.update(question_params)
+    @question = Question.find(params[:id])
 
-    redirect_to question_path(@question), notice: 'Сохранили вопрос!'
+    if @question.update(question_params)
+      redirect_to root_path, notice: 'Вы успешно изменили данные'
+    else
+      flash.now[:alert] = 'При попытке изменить данные возникли ошибки'
+
+      render :edit
+    end
   end
 
   def destroy

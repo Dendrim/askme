@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :questions do
     member do
       put 'hide'
+      patch 'edit', to: 'questions#update'
     end
   end
 
