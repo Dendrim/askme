@@ -1,16 +1,16 @@
 <div class="container">
   <h2 class="title">Редактирование профиля</h2>
 
-  <% if @user.errors.any? %>
+  <% if flash[:user_errors].present? %>
     <div class="mt">
-      <% @user.errors.full_messages.each do |message| %>
+      <% flash[:user_errors].each do |message| %>
         <p class="mb-sm text-red"><%= message %></p>
       <% end %>
     </div>
   <% end %>
 
   <div class="mt">
-    <%= form_with model: @user, url: edit_user_path(@user) , data: {turbo: false} do |form| %>
+    <%= form_with model: @user, data: {turbo: false} do |form| %>
       <p><%= form.label :name, 'Имя' %></p>
       <p><%= form.text_field :name, class: 'form-text-field' %></p>
 

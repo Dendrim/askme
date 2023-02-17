@@ -1,9 +1,9 @@
 <div class="container">
   <h2 class="title-lg">Изменяем Вопрос <%= @question.id%></h2>
 
-  <% if @question.errors.any? %>
+  <% if flash[:question_errors].present? %>
     <div class="mt">
-      <% @question.errors.full_messages.each do |message| %>
+      <% flash[:question_errors].each do |message| %>
         <p class="mb-sm text-red"><%= message %></p>
       <% end %>
     </div>

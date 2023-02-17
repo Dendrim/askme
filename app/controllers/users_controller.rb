@@ -11,8 +11,8 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: 'Вы успешно зарегистрировались'
     else
       flash.now[:alert] = 'Вы неправильно заполнили поля формы регистрации'
-
-      render :new
+      flash[:user_errors] = @user.errors.full_messages
+      redirect_to new_user_path
     end
   end
 
@@ -26,9 +26,10 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to root_path, notice: 'Вы успешно изменили данные'
     else
-      flash.now[:alert] = 'При попытке изменить данные возникли ошибки'
+      flash[:alert] = 'Вы неправильно заполнили поля формы регистрации'
+      flash[:user_errors] = @user.errors.full_messages
 
-      render :edit
+      redirect_to edit_user_path
     end
   end
 

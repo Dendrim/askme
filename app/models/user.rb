@@ -9,7 +9,7 @@ class User < ApplicationRecord
                        format: { with: /\A[a-zA-Z0-9_]+\z/, message: 'only allows letters, numbers and underscore' },
                        length: { maximum: 40 }
   validates :color, allow_blank: true,
-                    format: { with: /\A[a-f0-9]+\z/, message: 'is not a color. Leave blank to reset color.' },
+                    format: { with: /\A[a-f0-9]+\z/, message: 'should only contain HEX characters(0-9, a-f). Leave blank to reset color.' },
                     length: { is: 6 }
 
   def downcase_nickname

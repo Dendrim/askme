@@ -6,16 +6,10 @@ Rails.application.routes.draw do
   resources :questions do
     member do
       put 'hide'
-      patch 'edit', to: 'questions#update'
     end
   end
 
   resources :users, only: %i[new create edit update destroy]
-  resources :users do
-    member do
-      patch 'edit', to: 'users#update'
-    end
-  end
 
   resource :session, only: %i[new create destroy]
 end
