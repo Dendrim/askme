@@ -1,13 +1,5 @@
 <div class="container">
   <h2 class="title-lg mb">Новый Вопрос</h2>
 
-  <% if flash[:question_errors].present? %>
-    <div class="mt">
-      <% flash[:question_errors].each do |message| %>
-        <p class="mb-sm text-red"><%= message %></p>
-      <% end %>
-    </div>
-  <% end %>
-
   <%= render 'form', question: @question%>
 </div>

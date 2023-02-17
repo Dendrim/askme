@@ -1,3 +1,11 @@
+<% if flash[:question_errors].present? %>
+  <div class="mt">
+    <% flash[:question_errors].each do |message| %>
+      <p class="mb-sm text-red"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>
+
 <%= form_with model: question, data: {turbo: false} do |form| %>
   <p><%= form.label :body, 'Текст вопроса' %></p>
   <p><%= form.text_area :body, rows: 5, class: 'form-text-area' %></p>
