@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :nickname, presence: true,
                        format: { with: /\A[a-zA-Z0-9_]+\z/ },
+                       uniqueness: true,
                        length: { maximum: 40 }
   validates :color, allow_blank: true,
                     format: { with: /\A#[[:xdigit:]]{6}\z/ }
