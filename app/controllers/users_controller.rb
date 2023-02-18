@@ -44,6 +44,17 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'Пользователь был успешно удален'
   end
 
+  def reset_color
+    @user = User.find(params[:id])
+
+    if @user.id == session[:user_id]
+      @user.update(color: User.default_navbar_color)
+      flash[:notice] = "Цвет успешно сброшен"
+    end
+
+    redirect_to edit_user_path(@user)
+  end
+
   private
 
   def user_params

@@ -1,16 +1,24 @@
 class User < ApplicationRecord
   has_secure_password
 
-  before_save :downcase_nickname
+  before_validation :downcase_nickname, :downcase_email
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :nickname, presence: true,
-                       uniqueness: { case_sensitive: false },
-                       format: { with: /\A[a-zA-Z0-9_]+\z/, message: 'only allows letters, numbers and underscore' },
+                       format: { with: /\A[a-zA-Z0-9_]+\z/ },
                        length: { maximum: 40 }
   validates :color, allow_blank: true,
-                    format: { with: /\A[a-f0-9]+\z/, message: 'should only contain HEX characters(0-9, a-f). Leave blank to reset color.' },
-                    length: { is: 6 }
+                    format: { with: /\A#[[:xdigit:]]{6}\z/ }
+
+  def self.default_navbar_color
+    "#370617"
+  end
+
+  private
+
+  def downcase_email
+    email.downcase!
+  end
 
   def downcase_nickname
     nickname.downcase!

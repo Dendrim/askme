@@ -17,12 +17,11 @@
       <p class="mt"><%= form.label :nickname, 'Ник на сайте' %></p>
       <p><%= form.text_field :nickname, class: 'form-text-field' %></p>
 
-      <p class="mt"><%= form.label :color, 'Цвет шапки сайта. Шестнадцатиричный RGB формат. Оставьте пустым, если хотите использовать стандартный цвет.' %></p>
-      <p class="mt-sm"><%= form.label :color, 'Пример: ad01fd' %></p>
-      <p><%= form.text_field :color, class: 'form-text-field' %></p>
+      <p class="mt"><%= form.label :color, 'Цвет шапки сайта.' %></p>
+      <p class="text-sm"><%= form.label :color, 'Нажмите на поле, чтобы открыть палитру' %></p>
+      <p><%= form.color_field :color, class: "form-color-field mt"%>  </p>
 
       <p class="mt-lg text-sm">Если не хотите менять пароль — оставьте эти поля пустыми!</p>
-
       <p class="mt"><%= form.label :password, 'Пароль' %></p>
       <p><%= form.password_field :password, class: 'form-text-field' %></p>
 
@@ -33,15 +32,22 @@
         <%= submit_tag "Сохранить", class: 'button button-main', name: nil %>
         <span class="text-sm">или <%= link_to "вернуться", :back %></span>
       </p>
-
     <% end %>
 
+    <div class="horizontal-list">
+      <div class="mt-lg mr-sm ml-sm">
+        <%= button_to "Сбросить цвет шапки сайта", reset_color_user_path(@user),
+          method: :put,
+          form: {data: {turbo_confirm: "Вы точно хотите сбросить цвет?"}},
+          class: 'button button-main' %>
+      </div>
 
-    <div class="mt-lg">
-      <%= button_to "Удалить профиль", user_path(@user),
-        method: :delete,
-        form: {data: {turbo_confirm: "Вы точно хотите удалить свой профиль?"}},
-        class: 'text-red text-sm' %>
+      <div class="mt-lg">
+        <%= button_to "Удалить профиль", user_path(@user),
+          method: :delete,
+          form: {data: {turbo_confirm: "Вы точно хотите удалить свой профиль?"}},
+          class: 'button button-main' %>
+      </div>
     </div>
   </div>
 </div>

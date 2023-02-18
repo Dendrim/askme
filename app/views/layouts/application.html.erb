@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Askme</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,7 +12,7 @@
 
   <body>
     <div class="wrapper">
-      <div class="navbar mb-sm" style = "background-color: <%= "##{current_user.color if current_user.present?}" %>">
+      <div class="navbar mb-sm" style = "background-color: <%= "#{current_user.color if current_user.present?}" %>">
         <p title-sm text-bold><%= link_to "Ask me!", root_path %>  </p>
 
         <div>

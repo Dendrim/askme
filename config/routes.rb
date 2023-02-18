@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[new create edit update destroy]
+  resources :users do
+    member do
+      put 'reset_color'
+    end
+  end
 
   resource :session, only: %i[new create destroy]
 end
