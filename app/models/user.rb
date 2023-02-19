@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
+  after_create :set_default_color
   before_validation :downcase_nickname, :downcase_email
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -16,6 +17,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_default_color
+    update(color: User.default_navbar_color)
+  end
 
   def downcase_email
     email.downcase!

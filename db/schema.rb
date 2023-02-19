@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_090128) do
     t.string "password_digest"
     t.string "color", default: ""
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["nickname"], name: "index_users_on_nickname", unique: true
   end
 
 end
