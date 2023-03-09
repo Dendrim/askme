@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.id == session[:user_id]
-      @user.update(color: User.default_navbar_color)
+      @user.set_default_navbar_color
       flash[:notice] = "Цвет успешно сброшен"
     end
 
