@@ -18,10 +18,10 @@ class User < ApplicationRecord
   private
 
   def downcase_email
-    email.downcase!
+    email.downcase! if email.present?
   end
 
   def downcase_nickname
-    nickname.downcase!
+    nickname.downcase! if nickname.present?
   end
 end
