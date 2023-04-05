@@ -2,20 +2,39 @@
   <%= tag.p sanitize(question.body, tags: %w[br mark ins del sup sub small i b]), class:'question-body' %>
 </div>
 
+<% if question.author.present? && question.user != question.author %>
+  <div class="mb-sm text-sm">
+    <p>От:<%= link_to display_nickname(question.author), user_path(question.author) %></p>
+  </div>
+<%end%>
+
+
+<% if question.answer.present? %>
+  <hr class="mt-sm mb-sm" />
+  <div class="mb-sm text-dark-red">
+    <%= tag.p sanitize(question.answer, tags: %w[br mark ins del sup sub small i b]), class:'question-body' %>
+  </div>
+<% end %>
+
 <div class="text-sm question-footer">
   <div class="text-gray">
     <%= l(question.created_at, format: :short) %>
   </div>
 
-  <div>
-    <%= link_to fa_icon('pencil'), edit_question_path(question), title: 'Изменить вопрос' %>
+  <% if current_user.present? && current_user.eql?(question.user) %>
+    <div>
+      <% edit_icon = (question.answer.present? ? 'pencil' : 'reply') %>
 
-    <%= button_to fa_icon('trash-o'), question_path(question), method: :delete,
-      title: 'Удалить вопрос', form: {data: {turbo_confirm: 'Точно удалить вопрос?'}} %>
+      <%= link_to fa_icon(edit_icon), edit_question_path(question),
+        title: 'Изменить вопрос', class: 'mr-sm' %>
 
-    <% unless question.hidden? -%>
-      <%= button_to fa_icon('eye-slash'), hide_question_path(question), method: :put, title: 'Скрыть вопрос',
-        form: {data: {turbo_confirm: 'Точно скрыть вопрос?'}} %>
-    <% end -%>
-  </div>
+      <%= button_to fa_icon('trash-o'), question_path(question), method: :delete,
+        title: 'Удалить вопрос', form: {data: {turbo_confirm: 'Точно удалить вопрос?'}} %>
+
+      <% unless question.hidden? -%>
+        <%= button_to fa_icon('eye-slash'), hide_question_path(question), method: :put, title: 'Скрыть вопрос',
+          form: {data: {turbo_confirm: 'Точно скрыть вопрос?'}} %>
+      <% end -%>
+    </div>
+  <% end %>
 </div>

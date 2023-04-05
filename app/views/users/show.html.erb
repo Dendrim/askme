@@ -1,0 +1,40 @@
+<div class="user-box">
+  <h2 class="title-lg mt-lg"><%= @user.name %></h2>
+
+  <% if current_user == @user %>
+    <p class="mt mb-lg">
+      <%= link_to fa_icon('pencil'), edit_user_path(@user) %>
+    </p>
+  <% end %>
+
+  <p class="text-bold mt mb-lg">@<%= @user.nickname %></p>
+</div>
+
+<% if @questions.any? %>
+  <div class="container">
+    <%= link_to "Спроси меня", new_question_path(user_id: @user.id),
+      class: 'button button-yellow' %>
+
+    <p class="mt">
+      <%= render 'questions/form', question: @question %>
+    </p>
+  </div>
+
+  <div class="container mt-sm mb-sm">
+    <h2 class="title-lg">Все вопросы</h2>
+  </div>
+
+  <% @questions.each do |question| %>
+    <div class="container mb-sm">
+      <p class="mb-sm<%= question.hidden? ? ' hidden-question' : ''%>">
+        <%= link_to "Вопрос #{question.id}", question_path(question) %>
+        <div>
+          <%= render 'questions/question', question: question%>
+        </div>
+      </p>
+    </div>
+  <% end %>
+
+<% else %>
+  <%= render partial: 'no_questions', locals: {user: @user} %>
+<% end %>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: %i[new create edit update destroy]
+  resources :users, except: %i[index]
   resources :users do
     member do
       put 'reset_color'

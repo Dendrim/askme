@@ -17,7 +17,7 @@
 
         <div>
           <% if current_user.present? %>
-            <%= content_tag 'span', display_nickname(current_user), class: 'mr-sm' %>
+            <%= link_to display_nickname(current_user), user_path(current_user), class: 'mr-sm' %>
             <%= button_to 'Изменить профиль', edit_user_path(current_user), method: :get, class: 'button button-empty'%>
             <%= button_to 'Выйти', session_path, method: :delete, class: 'button button-empty'%>
           <% else %>

@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :questions, dependent: :delete_all
+
   before_validation :downcase_nickname, :downcase_email
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -18,10 +20,10 @@ class User < ApplicationRecord
   private
 
   def downcase_email
-    email.downcase! if email.present?
+    email&.downcase!
   end
 
   def downcase_nickname
-    nickname.downcase! if nickname.present?
+    nickname&.downcase!
   end
 end

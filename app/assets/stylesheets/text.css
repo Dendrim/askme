@@ -7,6 +7,10 @@ a, button {
   color: #DC2F02;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .text-bold {
   font-weight: bold;
 }
@@ -33,4 +37,12 @@ a, button {
 
 .text-red {
   color: #d00000
+}
+
+.text-dark-red {
+  color: #9d0208
+}
+
+.text-light-grey {
+  color: #c0c0c0;
 }
