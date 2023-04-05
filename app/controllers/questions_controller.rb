@@ -46,9 +46,8 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @question = Question.new
-
-    @questions = Question.order(:id).all
+    @users = User.order(created_at: :desc).first(10)
+    @questions = Question.order(created_at: :desc).first(10)
   end
 
   def new

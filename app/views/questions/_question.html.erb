@@ -1,5 +1,5 @@
 <div class="mb-sm">
-  <%= tag.p sanitize(question.body, tags: %w[br mark ins del sup sub small i b]), class:'question-body' %>
+  <%= sanitize(question.body, tags: %w[br mark ins del sup sub small i b])%>
 </div>
 
 <% if question.author.present? && question.user != question.author %>
@@ -12,7 +12,7 @@
 <% if question.answer.present? %>
   <hr class="mt-sm mb-sm" />
   <div class="mb-sm text-dark-red">
-    <%= tag.p sanitize(question.answer, tags: %w[br mark ins del sup sub small i b]), class:'question-body' %>
+    <%= sanitize(question.answer, tags: %w[br mark ins del sup sub small i b]) %>
   </div>
 <% end %>
 

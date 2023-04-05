@@ -1,4 +1,7 @@
 <div class="container">
   <h2 class="title-lg">Изменяем Вопрос <%= @question.id%></h2>
+
+  <p>Автор вопроса: <%= link_to question.author%></p>
+
   <%= render 'form', question: @question%>
 </div>

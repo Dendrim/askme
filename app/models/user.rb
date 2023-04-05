@@ -13,6 +13,9 @@ class User < ApplicationRecord
   validates :color, allow_blank: true,
                     format: { with: /\A#[[:xdigit:]]{6}\z/ }
 
+  include Gravtastic
+  gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')
+
   def set_default_navbar_color
     update(color: User.columns_hash['color'].default)
   end
