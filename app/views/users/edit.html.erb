@@ -41,14 +41,14 @@
 
     <div class="horizontal-list">
       <div class="mt-lg mr-sm ml-sm">
-        <%= button_to "Сбросить цвет шапки сайта", reset_color_user_path(@user),
+        <%= button_to "Сбросить цвет шапки сайта", reset_color_user_path(@user.nickname),
           method: :put,
           form: {data: {turbo_confirm: "Вы точно хотите сбросить цвет?"}},
           class: 'button button-main' %>
       </div>
 
       <div class="mt-lg">
-        <%= button_to "Удалить профиль", user_path(@user),
+        <%= button_to "Удалить профиль", user_path(@user.nickname),
           method: :delete,
           form: {data: {turbo_confirm: "Вы точно хотите удалить свой профиль?"}},
           class: 'button button-main' %>

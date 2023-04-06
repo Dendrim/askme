@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       flash[:alert] = 'Вы неправильно заполнили поля формы регистрации'
       flash[:user_errors] = @user.errors.full_messages
 
-      redirect_to edit_user_path
+      redirect_to edit_user_path(@user.nickname)
     end
   end
 
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @questions = @user.questions.order('created_at DESC')
     @question = Question.new(user: @user)
   end
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Цвет успешно сброшен'
     end
 
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user.nickname)
   end
 
   private
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.where(nickname: params[:nickname])[0]
   end
 
   def user_params
