@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destoy reset_color]
-  before_action :authorize_user, only: %i[edit update destoy reset_color]
+  before_action :set_user, only: %i[show edit update destroy reset_color]
+  before_action :authorize_user, only: %i[edit update destroy reset_color]
 
   def new
     @user = User.new
