@@ -2,7 +2,7 @@
   <%= sanitize(question.body, tags: %w[br mark ins del sup sub small i b])%>
 </div>
 
-<% if question.author.present? && question.user != question.author %>
+<% if question.author.present? %>
   <div class="mb-sm text-sm">
     <p>От:<%= link_to display_nickname(question.author), user_path(question.author.nickname) %></p>
   </div>
@@ -17,7 +17,7 @@
 <% end %>
 
 <div class="text-sm question-footer">
-  <div class="text-gray">
+  <div class="text-grey">
     <%= l(question.created_at, format: :short) %>
   </div>
 

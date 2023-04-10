@@ -1,7 +1,9 @@
 <div class="container">
   <h2 class="title-lg">Изменяем Вопрос <%= @question.id%></h2>
 
-  <p>Автор вопроса: <%= link_to question.author%></p>
+  <% if @question.author.present? %>
+    <p>Автор вопроса: <%= link_to @question.author.nickname, user_path(@question.author.nickname) %></p>
+  <% end %>
 
-  <%= render 'form', question: @question%>
+  <%= render partial: 'form', locals: {question: @question} %>
 </div>
