@@ -23,21 +23,17 @@ class UsersController < ApplicationController
   end
 
   def update
-    redirect_with_alert unless current_user == @user
-
     if @user.update(user_params)
       redirect_to root_path, notice: 'Вы успешно изменили данные'
     else
       flash[:alert] = 'Вы неправильно заполнили поля формы регистрации'
       flash[:user_errors] = @user.errors.full_messages
 
-      redirect_to edit_user_path(@user.nickname)
+      redirect_to edit_user_path(current_user)
     end
   end
 
   def destroy
-    redirect_with_alert unless current_user == @user
-
     @user.destroy
     session.delete(:user_id)
 
@@ -45,7 +41,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    #@user = User.find(params[:id])
     @questions = @user.questions.order('created_at DESC')
     @question = Question.new(user: @user)
   end
@@ -56,7 +51,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Цвет успешно сброшен'
     end
 
-    redirect_to edit_user_path(@user.nickname)
+    redirect_to edit_user_path(@user)
   end
 
   private
