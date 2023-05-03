@@ -31,7 +31,7 @@
       <p class="mb-sm<%= question.hidden? ? ' hidden-question' : ''%>">
         <%= link_to "Вопрос #{question.id}", question_path(question) %>
         <div>
-          <%= render 'questions/question', question: question%>
+          <%= render 'questions/question', question: question %>
         </div>
       </p>
     </div>

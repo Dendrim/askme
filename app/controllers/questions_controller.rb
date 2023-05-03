@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
       flash[:alert] = 'При создании вопроса возникли ошибки'
       flash[:question_errors] = @question.errors.full_messages
 
-      redirect_to new_question_path
+      redirect_to new_question_path(user_id: @question.user.id)
     end
   end
 

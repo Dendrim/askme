@@ -38,3 +38,11 @@
     </div>
   <% end %>
 </div>
+
+<div>
+  <% if question.hashtags.any? %>
+    <div class="mb-sm mt-sm">
+      <%= render partial: 'hashtags/hashtag', collection: question.hashtags %>
+    </div>
+  <% end %>
+</div>

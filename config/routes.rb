@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: 'questions#index'
 
+  resources :hashtags, only: %i[index]
+
   resources :questions do
     member do
       put 'hide'

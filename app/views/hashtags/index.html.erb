@@ -1,0 +1,9 @@
+<% if @hashtag.present? %>
+  <div class="container mb-sm">
+    Все вопросы с хаштегом: <%= render partial: 'hashtags/hashtag', locals: {hashtag: @hashtag} %>
+  </div>
+
+  <%= render partial: 'questions/questions_list', locals: {question_list: @hashtag.questions} %>
+<% else %>
+  <%= render partial: 'hashtags/empty_list' %>
+<% end %>
