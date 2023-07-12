@@ -45,15 +45,6 @@ class UsersController < ApplicationController
     @question = Question.new(user: @user)
   end
 
-  def reset_color
-    if @user.id == session[:user_id]
-      @user.set_default_navbar_color
-      flash[:notice] = 'Цвет успешно сброшен'
-    end
-
-    redirect_to edit_user_path(@user)
-  end
-
   private
 
   def authorize_user

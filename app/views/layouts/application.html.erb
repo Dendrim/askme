@@ -18,7 +18,10 @@
         <div>
           <% if current_user.present? %>
             <%= link_to display_nickname(current_user), user_path(current_user), class: 'mr-sm' %>
-            <%= button_to 'Изменить профиль', edit_user_path(current_user), method: :get, class: 'button button-empty'%>
+
+            <%# без "data: { turbo: false }" не будет работать скрипт со сбросом цвета при переходе на страницу (но будет, если её обновить) %>
+            <%= link_to 'Изменить профиль', edit_user_path(current_user), class: 'button button-empty', data: { turbo: false }%>
+
             <%= button_to 'Выйти', session_path, method: :delete, class: 'button button-empty'%>
           <% else %>
             <%=  link_to 'Регистрация', new_user_path, class: 'button button-empty mr-sm'%>
