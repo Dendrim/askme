@@ -16,10 +16,6 @@ class User < ApplicationRecord
   include Gravtastic
   gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')
 
-  def set_default_navbar_color
-    update(color: User.columns_hash['color'].default)
-  end
-
   def to_param
     nickname
   end
