@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  before_commit :find_hashtags
+  before_commit :apply_hashtags
 
   belongs_to :user
   belongs_to :author, class_name: 'User', optional: true
@@ -10,11 +10,11 @@ class Question < ApplicationRecord
 
   private
 
-  def find_hashtags
+  def apply_hashtags
     hashtags.delete_all
 
-    hashtags_to_add = body.scan(/#\w+/).map(&:downcase) +
-                      answer.scan(/#\w+/).map(&:downcase)
+    hashtags_to_add = body.scan(/#\w+/).map(&:downcase)
+    hashtags_to_add += answer.scan(/#\w+/).map(&:downcase) if answer.present?
 
     hashtags_to_add.uniq.each do |hashtag|
       hashtags << Hashtag.where(body: hashtag).first_or_create

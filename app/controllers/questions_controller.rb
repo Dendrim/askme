@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :ensure_current_user, only: %i[update destroy edit hide]
   before_action :set_question_for_current_user, only: %i[update destroy edit hide]
+  before_action :set_user, only: %i[new]
 
   def create # rubocop:disable Metrics/AbcSize
     question_params = params.require(:question).permit(:body, :user_id)
@@ -13,7 +14,7 @@ class QuestionsController < ApplicationController
       flash[:alert] = 'При создании вопроса возникли ошибки'
       flash[:question_errors] = @question.errors.full_messages
 
-      redirect_to new_question_path(user_id: @question.user.id)
+      redirect_to new_question_path(nickname: @question.user.nickname)
     end
   end
 
@@ -50,8 +51,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
-    @question = Question.new(user: @user)
+    @question = @user.questions.build
   end
 
   def hide
@@ -61,6 +61,10 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.where(nickname: params[:nickname])[0]
+  end
 
   def ensure_current_user
     redirect_with_alert unless current_user.present?
