@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       flash[:alert] = 'Вы неправильно заполнили поля формы регистрации'
       flash[:user_errors] = @user.errors.full_messages
 
-      redirect_to edit_user_path(current_user)
+      redirect_to edit_user_path(current_user.nickname)
     end
   end
 

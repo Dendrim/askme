@@ -11,11 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, except: %i[index], param: :nickname do
-    member do
-      put 'reset_color'
-    end
-  end
+  resources :users, except: %i[index], param: :nickname
 
   resource :session, only: %i[new create destroy]
 end

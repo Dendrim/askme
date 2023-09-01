@@ -17,10 +17,10 @@
 
         <div>
           <% if current_user.present? %>
-            <%= link_to display_nickname(current_user), user_path(current_user), class: 'mr-sm' %>
+            <%= link_to display_nickname(current_user), user_path(current_user.nickname), class: 'mr-sm' %>
 
             <%# без "data: { turbo: false }" при переходе на страницу не будет работать скрипт со сбросом цвета (но будет, если её обновить) %>
-            <%= link_to 'Изменить профиль', edit_user_path(current_user), class: 'button button-empty', data: { turbo: false } %>
+            <%= link_to 'Изменить профиль', edit_user_path(current_user.nickname), class: 'button button-empty', data: { turbo: false } %>
 
             <%= button_to 'Выйти', session_path, method: :delete, class: 'button button-empty'%>
           <% else %>

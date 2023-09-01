@@ -4,7 +4,7 @@
 
 <% if question.author.present? %>
   <div class="mb-sm text-sm">
-    <p>От:<%= link_to display_nickname(question.author), user_path(question.author) %></p>
+    <p>От:<%= link_to display_nickname(question.author), user_path(question.author.nickname) %></p>
   </div>
 <%end%>
 
