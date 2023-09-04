@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: 'questions#index'
 
-  resources :hashtags, only: %i[index]
+  resources :hashtags, only: %i[show]
 
   resources :questions do
     member do

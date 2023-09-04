@@ -4,17 +4,18 @@ class Question < ApplicationRecord
   belongs_to :user
   belongs_to :author, class_name: 'User', optional: true
 
-  has_and_belongs_to_many :hashtags
+  has_many :question_tags, dependent: :destroy
+  has_many :hashtags, through: :question_tags
 
   validates :body, presence: true, length: { maximum: 280 }
 
   private
 
   def save_hashtags
-    hashtags_to_add = (body + answer.to_s).scan(Hashtag::REGEX).map(&:downcase)
+    hashtags_to_add = ("#{body} #{answer}").scan(Hashtag::REGEX).map(&:downcase)
 
     self.hashtags = hashtags_to_add.uniq.map do |hashtag|
-      Hashtag.create_or_find_by(body: hashtag)
+      Hashtag.create_or_find_by(body: hashtag.delete('#'))
     end
   end
 end
