@@ -25,16 +25,17 @@
       <p class="mt"><%= form.label :color, 'Цвет шапки сайта.' %></p>
       <p class="text-sm"><%= form.label :color, 'Нажмите на поле, чтобы открыть палитру' %></p>
 
-      <div data-controller="color">
+      <div data-controller="color" data-color-default-value= <%= User.columns_hash['color'].default %>>
           <%= form.color_field :color, class: "form-color-field",
-          data: { default_value: User.columns_hash['color'].default,
-                  color_target: 'color_field' } %>
+          data: { color_target: 'colorField' } %>
 
-          <%= button_tag "Сбросить цвет шапки сайта",
-            class: 'button button-main  mt-lg mr-sm ml-sm',
-            data: {action: 'click->color#reset'},
-            type: 'button'
-          %>
+          <div>
+            <%= button_tag "Сбросить цвет шапки сайта",
+              class: 'button button-main  mt-sm',
+              data: {action: 'click->color#reset'},
+              type: 'button'
+            %>
+          </div>
       </div>
 
       <p class="mt-lg text-sm">Если не хотите менять пароль — оставьте эти поля пустыми!</p>

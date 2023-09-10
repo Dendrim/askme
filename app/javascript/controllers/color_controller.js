@@ -1,13 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-
-  static targets = [ "color_field" ]
+  static values = {
+    default: String
+  }
+  static targets = [ "colorField" ]
 
   reset() {
-    const element = this.color_fieldTarget;
-
+    const element = this.colorFieldTarget;
     confirm("Вы точно хотите сбросить цвет?");
-    element.value = element.getAttribute("data-default-value");
+    element.value = this.defaultValue;
   }
 }
