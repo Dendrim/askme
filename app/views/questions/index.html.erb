@@ -16,7 +16,7 @@
   </h2>
 
   <div class="container">
-    <%= render partial: 'hashtags/hashtag', collection: Hashtag.where.associated(:questions).distinct %>
+    <%= render partial: 'hashtags/hashtag', collection: @hashtags %>
   </div>
 </div>
 
